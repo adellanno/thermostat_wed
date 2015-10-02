@@ -1,0 +1,46 @@
+#weather {
+  font-size: 30px;
+  color: red;
+}
+
+#body {
+  background-image: url('http://www.freelargeimages.com/wp-content/uploads/2015/07/Beach_Wallpaper_02.jpg');
+}
+
+#container {
+
+  text-align: center;
+
+}
+
+#logo {
+  font-size: 55px;
+  color: black;
+}
+
+#output {
+  font-size: 50px;
+}
+.btn_up {
+  color: #FFFFFF;
+  font-family: Verdana;
+  font-weight: bold;
+  font-size: 18px;
+  background-color: green;
+}
+
+.btn_down {
+  color: #FFFFFF;
+  font-family: Verdana;
+  font-weight: bold;
+  font-size: 18px;
+  background-color: red;
+}
+
+.btn_reset {
+  color: #FFFFFF;
+  font-family: Verdana;
+  font-weight: bold;
+  font-size: 15px;
+  background-color: orange;
+}

@@ -76,6 +76,7 @@ describe('Thermostat', function() {
       for (var i = 20; i <= powerSavingModeMax - 1; i++) {
         thermostat.increaseByOne();
       }
+
       expect(function() {
         thermostat.increaseByOne();
       }).toThrowError(
@@ -88,6 +89,7 @@ describe('Thermostat', function() {
       for (var i = 20; i <= maxTemp - 1; i++) {
         thermostat.increaseByOne();
       }
+
       expect(function() {
 
         thermostat.increaseByOne();

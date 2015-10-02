@@ -2,11 +2,9 @@
 <html>
 <head>
   <meta charset='utf-8'>
-  <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css'>
-  <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css'>
+  <link rel="stylesheet" type="text/css" href="public/styles.css">
   <script src='https://code.jquery.com/jquery-2.1.4.js'></script>
   <script src='src/jquery.js'></script>
-  <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css'>
   <script src='src/thermostat.js'></script>
 
 
@@ -15,21 +13,48 @@
 
 </head>
 
-<body class = 'container'>
-  <div style="text-align: center" >
-  <h1> Thermostat  </h1>
-  <h1 id = 'output'>links </h1>
+<body id = 'body' >
+  <div id = 'container'>
+  <h1 id = 'logo'> Thermostat  </h1>
+  <h1 id = 'output'>Temperature</h1>
   <br>
   <br>
-  <input id = 'temp_up' type='submit' class='btn btn-success' value='Temperature Up'>
-  <input id = 'temp_down' type='submit' class='btn btn-danger' value='Temperature Down'>
+  <input id = 'temp_up' type='submit' class='btn_up' value='Temperature Up'>
+  <input id = 'temp_down' type='submit' class='btn_down' value='Temperature Down'>
   <div class="checkbox">
+    <br>
  <label><input type="checkbox" id = 'powerSave' value="checked" checked>Power Saving Mode</label>
  <br>
  <br>
- <input id = 'reset' type='submit' class='btn btn-warning' value='Reset'>
-  <script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js'></script>
+ <input id = 'reset' type='submit' class='btn_reset' value='Reset'>
   </div>
+  <br>
+  <br>
+  <p id ='error'> </p>
+
+<center>
+  <table>
+  <tr>
+    <td> City</td>
+    <td><input type="text" id="txtCity" /></td>
+  </tr>
+  <tr >
+    <td> Country </td>
+    <td><input type="text" id="txtCountry" /></td>
+  </tr>
+</table>
+</center>
+<input type="button" id="btnGetWeather" value="Get Weather Data" />
+<br /><br />
+<div id="resultDiv">
+</div>
+
+  <div id = 'weather_wrap'>
+ <p id='weather'>  </p>
+ </div>
+
+
+</div>
 </body>
 
 

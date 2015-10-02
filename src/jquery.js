@@ -1,60 +1,59 @@
 $(document).ready(function()
 
   {
-    therm = new Thermostat();
+  therm = new Thermostat();
 
-    $('#output').css('color', 'gold');
-    $('#output').html(therm.temp);
+  var display = function() {
+  $('#output').html(therm.temp + '°C');
+  $('#output').css('color', therm.tempColour());
+};
 
+  display();
 
-    $('#temp_up').click(function() {
+  $('#temp_up').click(function() {
+    try {
       therm.increaseByOne();
-      if (therm.temp < 18 ) {
-        $('#output').css('color', 'green');
-    } else if (therm.temp  >= 18 && therm.temp < 25) {
-        $('#output').css('color', 'gold');
-    } else {
-        $('#output').css('color', 'red');
-    }
-      $('#output').html(therm.temp);
-    });
+      display();
+    } catch (x) {
+      alert('Power Saving Mode on, maximum temperature reached');
 
-    $('#temp_down').click(function() {
+    } finally { }
+
+  });
+
+  $('#temp_down').click(function() {
       therm.decreaseByOne();
-      if (therm.temp < 18 ) {
-        $('#output').css('color', 'green');
-    } else if (therm.temp  >= 18 && therm.temp < 25) {
-        $('#output').css('color', 'gold');
-    } else {
-        $('#output').css('color', 'red');
-    }
-      $('#output').html(therm.temp);
+      display();
     });
 
-    $('input[type="checkbox"]').click(function() {
-      if ($("#powerSave").is(":checked")) {
-        therm.turnOnPowerSavingMode();
-      } else if ($("#powerSave").is(":not(:checked)")) {
-        therm.turnOffPowerSavingMode();
-      }
-      $('#output').html(therm.temp);
-    });
+  $('input[type="checkbox"]').click(function() {
+  if ($('#powerSave').is(':checked')) {
+    therm.turnOnPowerSavingMode();
+  } else if ($('#powerSave').is(':not(:checked)')) {
+    therm.turnOffPowerSavingMode();
+  }
 
-    $('#reset').click(function() {
-      therm.resetButton();
-      $('#output').html(therm.temp);
-      $('#output').css('color', 'gold')
-    });
-    //
-    //   if (therm.temp < 18 ) {
-    //     $('#output').css('color', 'red');
-    //     $('#output').html(therm.temp);
-    // } else if (therm.temp  > 18 ) {
-    //     $('#output').css('color', 'green');
-    //    $('#output').html(therm.temp);
-    //
-    // };
+  display();
+  });
 
+  $('#reset').click(function() {
+    therm.resetButton();
+    display();
+  });
+
+  $('#btnGetWeather').click(function() {
+      var requestData = $('#txtCity').val() + ',' + $('#txtCountry').val() + '&units=metric';
+      var resultElement = $('#resultDiv');
+
+      var link = 'http://api.openweathermap.org/data/2.5/weather?q=' + requestData;
+
+      $.ajax({
+        url: link,
+        success: function(data) {
+          resultElement.html('Temperature: ' + data.main.temp + '°C');
+         }
+      });
+    });
 
 
 
@@ -63,5 +62,13 @@ $(document).ready(function()
 
 
   });
-// $('#powerSave').prop('checked', true) {
-//   therm.turnOnPowerSavingMode();
+
+  // $.ajax({
+  //   url: 'http://api.wunderground.com/api/de4830905b55f18e/geolookup/conditions/q/UK/london.json',
+  //   dataType: 'jsonp',
+  //   success: function(parsed_json) {
+  //     var location = parsed_json['location']['city'];
+  //     var temp_f = parsed_json['current_observation']['temp_c'];
+  //     $('#weather').html('Current temperature in ' + location + ' is: ' + temp_f + '°C');
+  //   }
+  //   });
